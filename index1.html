@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <style>
+    body {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+    }
+		canvas {
+			border: 1px solid #000;
+		}
+    </style>
+    <body>
+    <canvas width="1500" height="900"></canvas>
+    </body>
+    <script>
+    var cas=document.getElementsByTagName("canvas")[0];
+    var cts=cas.getContext("2d");
+    
+   var arr=['a','s','d','f','g','h','j','k','l','q','w','e','r','t','y','u','i','o','p',1,2,3,4,5,6,7,8,9,0,'z','x','c','v','b','n','m'];
+  	var width=cas.width;
+  	var height=cas.height;
+  	var fontheight=30;
+  	var colums=width/fontheight;
+  	cts.font=fontheight+'px simsun';
+  	var arr1=[];
+  	var arr2=[];
+  	for(var i=0;i<colums;i++){
+  		arr1[i]=colums;
+  		arr2[i]="";
+  	}
+  	var timer=setInterval(function(){
+		cts.fillStyle="rgba(0,0,0,0.09)";
+			cts.fillRect(0, 0, width, height);
+		for(var j=0;j<width/fontheight;j++){
+			var text=arr[Math.floor(Math.random()*arr.length)];
+			cts.fillStyle="#30f230";
+			cts.fillText(text, j*fontheight, arr1[j]*fontheight);
+		}
+		for( var k=0;k<arr1.length;k++){
+			arr1[k]++;
+			var change=Math.random();
+			if(arr1[k]*fontheight>height&&change>0.9){
+				arr1[k]=0;
+			}
+		}
+  	}, 30);
+    </script>
+</html>
